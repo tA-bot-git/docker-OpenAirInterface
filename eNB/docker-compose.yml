@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  oaienb:
+    build: ./
+    container_name: oaienb
+    privileged: true
+    tty: true
+    volumes:
+      - ./:/config
+      - /dev/bus/usb:/dev/bus/usb
+    devices:
+      - "/dev/mem:/dev/mem"
+      - /dev/bus/usb:/dev/bus/usb:rwm
+      - /dev/ttyUSB0:/dev/ttyUSB0:rwm
+      - /dev/ttyUSB1:/dev/ttyUSB1:rwm
+      - "/dev/bus/usb/004/002:/dev/bus/usb/004/002"
+    privileged: true
+    stdin_open: true
+    networks:
+      br1:
+        ipv4_address: 192.168.2.2
+    mac_address: 06:E7:35:8D:2F:4A
+
+networks:
+  br1:
+    driver: macvlan
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+      parent: wlo1
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.2.1/24
+          gateway: 192.168.2.0
+
+
