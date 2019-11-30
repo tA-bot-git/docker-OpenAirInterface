@@ -24,18 +24,6 @@ RUN apt-get -yq install autoconf  \
         iproute \
         iptables \
         python  
-#RUN apt-get install -qy libgnutls-dev nettle-dev nettle-bin
-
-#RUN apt-get -qy install libffi-dev libxslt1-dev
-#RUN pip install --upgrade pip
-#RUN pip install paramiko==1.17.1
-#RUN pip install pyroute2
-#RUN update-alternatives --set liblapack.so /usr/lib/atlas-base/atlas/liblapack.so
-
-# ASN1 compiler with Eurecom fixes
-WORKDIR /root
-# RUN git clone https://gitlab.eurecom.fr/oai/asn1c.git
-# RUN cd asn1c && ./configure && make -j`nproc` && make install
 
 # Fetching the develop repository
 RUN git clone https://gitlab.eurecom.fr/oai/openairinterface5g.git
@@ -73,11 +61,11 @@ RUN echo "set (UE_TIMING_TRACE \"False\")"                                      
 RUN echo "set (DISABLE_LOG_X \"False\")"                                                        >> CMakeLists.txt
 RUN echo 'include(${CMAKE_CURRENT_SOURCE_DIR}/../CMakeLists.txt)'   >> CMakeLists.txt
 
-#WORKDIR /root/openairinterface5g/cmake_targets/lte_build_oai/build
-#RUN OPENAIR_HOME=/root/openairinterface5g OPENAIR_DIR=$OPENAIR_HOME OPENAIR1_DIR=$OPENAIR_HOME/openair1 OPENAIR2_DIR=$OPENAIR_HOME/openair2 OPENAIR3_DIR=$OPENAIR_HOME/openair3 OPENAIR_TARGETS=$OPENAIR_HOME/targets cmake ../
-#RUN make -j`nproc` lte-softmodem
-#RUN make -j`nproc` oai_usrpdevif
-#RUN make -j`nproc` params_libconfig
+WORKDIR /root/openairinterface5g/cmake_targets/lte_build_oai/build
+RUN OPENAIR_HOME=/root/openairinterface5g OPENAIR_DIR=$OPENAIR_HOME OPENAIR1_DIR=$OPENAIR_HOME/openair1 OPENAIR2_DIR=$OPENAIR_HOME/openair2 OPENAIR3_DIR=$OPENAIR_HOME/openair3 OPENAIR_TARGETS=$OPENAIR_HOME/targets cmake ../
+RUN make -j`nproc` lte-softmodem
+RUN make -j`nproc` oai_usrpdevif
+RUN make -j`nproc` params_libconfig
 
 #RUN ln -sf liboai_usrpdevif.so liboai_device.so
 
