@@ -2,10 +2,10 @@
 
 Docker image to run OpenAirInterface inside Docker container.
 
-1. Build Image\
+1. Build Image<\br>
 
-docker-compose build --no-cache
+Use: docker-compose build --no-cache
 
-2. Compile/Run Container\
+2. Compile/Run Container <\br>
 
-docker-compose up
+Use: docker-compose up
