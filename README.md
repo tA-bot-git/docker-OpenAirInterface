@@ -1,6 +1,6 @@
-# docker-OpenAirInterface
+# docker-OpenAirInterface-eNB
 
-Docker image to run OpenAirInterface inside Docker container.
+Docker image to run OpenAirInterface inside Docker container (eNodeB).
 
 1. Build Image
 
